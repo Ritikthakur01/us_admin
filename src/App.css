@@ -8,6 +8,38 @@
   flex: 1;
   margin-left: 250px;
   padding: 2rem;
+  position: relative;
+}
+
+.hamburger-button {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1001;
+  background: #1F2937;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  flex-direction: column;
+}
+
+.hamburger-button:hover {
+  background: #111827;
+  transform: scale(1.05);
+}
+
+.hamburger-button svg {
+  width: 24px;
+  height: 24px;
+  stroke: white;
 }
 
 .loading-screen {
@@ -37,6 +69,11 @@
   .admin-content {
     margin-left: 0;
     padding: 1rem;
+    padding-top: 4rem;
+  }
+
+  .hamburger-button {
+    display: flex;
   }
 }
 

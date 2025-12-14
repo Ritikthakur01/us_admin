@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -13,11 +13,30 @@ import {
   FaComments,
   FaQuestionCircle,
   FaEdit,
+  FaTimes,
 } from 'react-icons/fa';
 import './Sidebar.css';
 
-const Sidebar = ({ onLogout }) => {
+const Sidebar = ({ onLogout, isOpen, onClose }) => {
   const location = useLocation();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  // Close sidebar when clicking on a menu item (for mobile)
+  const handleNavClick = () => {
+    if (isMobile) {
+      onClose();
+    }
+  };
 
   const menuItems = [
     { path: '/dashboard', icon: FaHome, label: 'Dashboard' },
@@ -34,12 +53,23 @@ const Sidebar = ({ onLogout }) => {
 
   return (
     <motion.aside
-      className="sidebar"
-      initial={{ x: -250 }}
-      animate={{ x: 0 }}
-      transition={{ duration: 0.3 }}
+      className={`sidebar ${isOpen ? 'sidebar-open' : ''}`}
+      initial={false}
+      animate={isMobile ? (isOpen ? { x: 0 } : { x: -250 }) : { x: 0 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
     >
       <div className="sidebar-header">
+        <button 
+          className="sidebar-close-button"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            onClose();
+          }}
+          aria-label="Close menu"
+        >
+          <FaTimes />
+        </button>
         <div className="sidebar-logo">
           <img
             src="/WhatsApp_Image_2025-12-08_at_4.17.05_AM-removebg-preview.png"
@@ -58,6 +88,7 @@ const Sidebar = ({ onLogout }) => {
               key={item.path}
               to={item.path}
               className={`nav-item ${isActive ? 'active' : ''}`}
+              onClick={handleNavClick}
             >
               <Icon />
               <span>{item.label}</span>

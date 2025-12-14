@@ -10,9 +10,11 @@
   flex-direction: column;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  transition: transform 0.3s ease;
 }
 
 .sidebar-header {
+  position: relative;
   padding: 0rem 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -124,9 +126,63 @@
   background: rgba(239, 68, 68, 0.3);
 }
 
+.sidebar-close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2010;
+  pointer-events: auto;
+}
+
+.sidebar-close-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.sidebar-close-button svg {
+  font-size: 1.2rem;
+}
+
+/* Hide close button on desktop */
+@media (min-width: 769px) {
+  .sidebar-close-button {
+    display: none;
+  }
+}
+
+/* Mobile responsive styles */
 @media (max-width: 768px) {
   .sidebar {
-    transform: translateX(-100%);
+    z-index: 2000;
+  }
+}
+
+/* Overlay for mobile */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1500;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sidebar-overlay {
+    display: block;
   }
 }
 

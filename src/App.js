@@ -61,9 +61,30 @@ axios.interceptors.response.use(
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
+  // Start with sidebar closed on mobile, open on desktop
+  const [isSidebarOpen, setIsSidebarOpen] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth > 768;
+    }
+    return false;
+  });
 
   useEffect(() => {
     checkAuth();
+  }, []);
+
+  // Handle window resize to update sidebar state
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setIsSidebarOpen(true);
+      } else {
+        setIsSidebarOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const checkAuth = async () => {
@@ -116,8 +137,31 @@ function App() {
           element={
             isAuthenticated ? (
               <div className="admin-layout">
-                <Sidebar onLogout={handleLogout} />
+                <Sidebar 
+                  onLogout={handleLogout} 
+                  isOpen={isSidebarOpen}
+                  onClose={() => setIsSidebarOpen(false)}
+                />
+                {isSidebarOpen && (
+                  <div 
+                    className="sidebar-overlay" 
+                    onClick={() => setIsSidebarOpen(false)}
+                  />
+                )}
                 <div className="admin-content">
+                  {!isSidebarOpen && (
+                    <button 
+                      className="hamburger-button"
+                      onClick={() => setIsSidebarOpen(true)}
+                      aria-label="Open menu"
+                    >
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                      </svg>
+                    </button>
+                  )}
                   <Routes>
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/groups" element={<GroupsManagement />} />
