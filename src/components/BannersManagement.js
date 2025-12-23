@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
-import { FaPlus, FaEdit, FaTrash, FaSave, FaTimes } from 'react-icons/fa';
+import { FaPlus, FaEdit, FaTrash, FaSave, FaTimes, FaCloudUploadAlt } from 'react-icons/fa';
 import Pagination from './Pagination';
 import './Management.css';
 
@@ -20,6 +20,7 @@ const BannersManagement = () => {
     order: 0,
     carouselType: 'auto',
   });
+  const [uploadingImage, setUploadingImage] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -128,6 +129,34 @@ const BannersManagement = () => {
     setShowForm(false);
   };
 
+  const handleImageUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploadingImage(true);
+    const uploadData = new FormData();
+    uploadData.append('file', file);
+
+    try {
+      const response = await axios.post(`${API_URL}/upload`, uploadData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      const uploadedUrl = response.data?.url;
+      if (uploadedUrl) {
+        setFormData((prev) => ({ ...prev, image: uploadedUrl }));
+        toast.success('Image uploaded successfully');
+      } else {
+        toast.error('Upload succeeded but no URL returned');
+      }
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      const message = error.response?.data?.message || 'Error uploading image';
+      toast.error(message);
+    } finally {
+      setUploadingImage(false);
+      e.target.value = '';
+    }
+  };
+
   return (
     <div className="management">
       <div className="management-header">
@@ -177,14 +206,35 @@ const BannersManagement = () => {
               </div>
               <div className="form-group">
                 <label>Image URL *</label>
-                <input
-                  type="url"
-                  value={formData.image}
-                  onChange={(e) =>
-                    setFormData({ ...formData, image: e.target.value })
-                  }
-                  required
-                />
+                <div className="upload-input-row">
+                  <input
+                    type="url"
+                    value={formData.image}
+                    onChange={(e) =>
+                      setFormData({ ...formData, image: e.target.value })
+                    }
+                    placeholder="Paste an image URL or upload below"
+                    required
+                  />
+                  <label className="btn-secondary upload-btn">
+                    <FaCloudUploadAlt />
+                    {uploadingImage ? 'Uploading...' : 'Upload'}
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      disabled={uploadingImage}
+                    />
+                  </label>
+                </div>
+                {uploadingImage && (
+                  <small className="upload-status">Uploading image...</small>
+                )}
+                {formData.image && !uploadingImage && (
+                  <small className="image-preview-hint">
+                    Using: {formData.image}
+                  </small>
+                )}
               </div>
               <div className="form-group">
                 <label>Link</label>

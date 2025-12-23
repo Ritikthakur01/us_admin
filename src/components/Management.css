@@ -151,7 +151,7 @@
 }
 
 .form-group label {
-  display: block;
+  /* display: block; */
   margin-bottom: 0.5rem;
   font-weight: 600;
   color: #1F2937;
@@ -181,6 +181,31 @@
   margin-top: 0.25rem;
   color: #6B7280;
   font-size: 0.875rem;
+}
+
+.upload-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.upload-btn {
+  /* position: relative;
+  overflow: hidden; */
+}
+
+.upload-btn input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.upload-status,
+.image-preview-hint {
+  color: #6B7280;
+  margin-top: 0.35rem;
+  display: block;
 }
 
 .form-actions {
