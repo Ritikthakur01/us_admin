@@ -8,7 +8,6 @@ import Dashboard from './components/Dashboard';
 import GroupsManagement from './components/GroupsManagement';
 import BannersManagement from './components/BannersManagement';
 import UsersManagement from './components/UsersManagement';
-import ThemeManagement from './components/ThemeManagement';
 import EmailManagement from './components/EmailManagement';
 import AnnouncementManagement from './components/AnnouncementManagement';
 import TestimonialsManagement from './components/TestimonialsManagement';
@@ -120,7 +119,7 @@ function App() {
   }
 
   return (
-    <Router>
+    <Router basename="/admin">
       <Routes>
         <Route
           path="/login"
@@ -171,7 +170,6 @@ function App() {
                     <Route path="/testimonials" element={<TestimonialsManagement />} />
                     <Route path="/faqs" element={<FaqsManagement />} />
                     <Route path="/form-fields" element={<FormFieldsManagement />} />
-                    <Route path="/theme" element={<ThemeManagement />} />
                     <Route path="/email" element={<EmailManagement />} />
                     <Route path="/" element={<Navigate to="/dashboard" />} />
                   </Routes>
@@ -193,7 +191,7 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme="dark"
       />
     </Router>
   );

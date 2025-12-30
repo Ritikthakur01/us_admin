@@ -6,7 +6,6 @@ import {
   FaUsers,
   FaImages,
   FaUserFriends,
-  FaPalette,
   FaEnvelope,
   FaSignOutAlt,
   FaBullhorn,
@@ -47,7 +46,6 @@ const Sidebar = ({ onLogout, isOpen, onClose }) => {
     { path: '/testimonials', icon: FaComments, label: 'Testimonials' },
     { path: '/faqs', icon: FaQuestionCircle, label: 'FAQs' },
     { path: '/form-fields', icon: FaEdit, label: 'Form Fields' },
-    { path: '/theme', icon: FaPalette, label: 'Theme' },
     { path: '/email', icon: FaEnvelope, label: 'Email' },
   ];
 

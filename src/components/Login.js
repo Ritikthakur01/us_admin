@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
@@ -15,40 +15,6 @@ const Login = ({ onLogin }) => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  useEffect(() => {
-    fetchTheme();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const fetchTheme = async () => {
-    try {
-      const response = await axios.get(`${API_URL}/theme`);
-      const colors = response.data.colors;
-      applyTheme(colors);
-    } catch (error) {
-      console.error('Error fetching theme:', error);
-      // Default theme
-      const defaultTheme = {
-        primary: '#3B82F6',
-        secondary: '#8B5CF6',
-        accent: '#10B981',
-        background: '#FFFFFF',
-        text: '#1F2937',
-        textLight: '#6B7280',
-      };
-      applyTheme(defaultTheme);
-    }
-  };
-
-  const applyTheme = (colors) => {
-    const root = document.documentElement;
-    root.style.setProperty('--theme-primary', colors.primary);
-    root.style.setProperty('--theme-secondary', colors.secondary);
-    root.style.setProperty('--theme-accent', colors.accent);
-    root.style.setProperty('--theme-background', colors.background);
-    root.style.setProperty('--theme-text', colors.text);
-    root.style.setProperty('--theme-text-light', colors.textLight);
-  };
 
   const handleChange = (e) => {
     setFormData({
@@ -90,11 +56,15 @@ const Login = ({ onLogin }) => {
             src="/WhatsApp_Image_2025-12-08_at_4.17.05_AM-removebg-preview.png"
             alt="Unique Solution Logo"
             className="logo-image"
-            
           />
+          <h2 className="login-logo-text">
+            <span className="logo-text-unique">UNIQUE</span>{' '}
+            <span className="logo-text-solution">SOLUTION</span>{' '}
+            <span className="logo-text-group">GROUP</span>
+          </h2>
         </div>
         <div className="login-header">
-          <h1>Welcome Back!</h1>
+          <h1>Welcome Back</h1>
           <p>Please enter your details to access your account</p>
         </div>
         <form onSubmit={handleSubmit} className="login-form">

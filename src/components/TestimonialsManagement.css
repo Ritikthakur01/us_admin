@@ -6,21 +6,25 @@
 }
 
 .testimonial-card {
-  background: white;
+  background: rgba(31, 41, 55, 0.8);
+  backdrop-filter: blur(10px);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .testimonial-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3), 0 0 0 1px rgba(59, 130, 246, 0.3);
+  transform: translateY(-2px);
+  background: rgba(31, 41, 55, 0.95);
 }
 
 .testimonial-preview {
   padding: 1.5rem;
-  background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
-  border-bottom: 1px solid #e5e7eb;
+  background: linear-gradient(135deg, rgba(17, 24, 39, 0.6) 0%, rgba(31, 41, 55, 0.8) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .testimonial-header {
@@ -51,7 +55,7 @@
 
 .testimonial-content-preview {
   font-style: italic;
-  color: var(--color-text);
+  color: #F9FAFB;
   line-height: 1.6;
   margin-bottom: 1rem;
   font-size: 0.95rem;
@@ -60,18 +64,18 @@
 .testimonial-author-preview h4 {
   font-size: 1rem;
   font-weight: 700;
-  color: var(--color-text);
+  color: #F9FAFB;
   margin-bottom: 0.25rem;
 }
 
 .testimonial-author-preview p {
   font-size: 0.85rem;
-  color: var(--color-text-light);
+  color: #D1D5DB;
   margin: 0.1rem 0;
 }
 
 .testimonial-author-preview .company {
-  color: var(--color-primary);
+  color: #60A5FA;
   font-weight: 600;
 }
 
@@ -84,7 +88,7 @@
 
 .testimonial-meta {
   font-size: 0.85rem;
-  color: var(--color-text-light);
+  color: #D1D5DB;
   margin: 0;
 }
 
@@ -121,7 +125,7 @@
 .rating-value {
   margin-left: 0.5rem;
   font-weight: 600;
-  color: var(--color-text);
+  color: #F9FAFB;
 }
 
 @media (max-width: 768px) {

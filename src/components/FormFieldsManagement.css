@@ -6,15 +6,19 @@
 }
 
 .field-card {
-  background: white;
+  background: rgba(31, 41, 55, 0.8);
+  backdrop-filter: blur(10px);
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .field-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3), 0 0 0 1px rgba(59, 130, 246, 0.3);
+  transform: translateY(-2px);
+  background: rgba(31, 41, 55, 0.95);
 }
 
 .field-header {
@@ -26,7 +30,7 @@
 
 .field-info h3 {
   margin: 0 0 0.5rem 0;
-  color: var(--color-text);
+  color: #F9FAFB;
   font-size: 1.1rem;
   font-weight: 700;
 }
@@ -40,16 +44,17 @@
 }
 
 .field-name {
-  background: #f3f4f6;
-  color: var(--color-text);
+  background: rgba(17, 24, 39, 0.6);
+  color: #F9FAFB;
   padding: 0.25rem 0.75rem;
   border-radius: 6px;
   font-size: 0.85rem;
   font-family: monospace;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .field-type {
-  background: var(--color-primary);
+  background: linear-gradient(135deg, #3B82F6, #8B5CF6);
   color: white;
   padding: 0.25rem 0.75rem;
   border-radius: 6px;
@@ -69,14 +74,14 @@
 .field-placeholder,
 .field-options {
   font-size: 0.85rem;
-  color: var(--color-text-light);
+  color: #D1D5DB;
   margin: 0.25rem 0;
   font-style: italic;
 }
 
 .field-order {
   font-size: 0.85rem;
-  color: var(--color-text-light);
+  color: #D1D5DB;
   margin: 0.5rem 0 0 0;
 }
 
@@ -109,8 +114,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem;
-  background: #f9fafb;
+  background: rgba(17, 24, 39, 0.6);
   border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .validation-rules {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
-import { FaUsers, FaImages, FaUserFriends, FaPalette } from 'react-icons/fa';
+import { FaUsers, FaImages, FaUserFriends } from 'react-icons/fa';
 import './Dashboard.css';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
@@ -64,7 +64,6 @@ const Dashboard = () => {
     { icon: FaUsers, label: 'Groups', value: stats.groups, color: '#3B82F6' },
     { icon: FaImages, label: 'Banners', value: stats.banners, color: '#8B5CF6' },
     { icon: FaUserFriends, label: 'Reached People', value: stats.users, color: '#10B981' },
-    { icon: FaPalette, label: 'Theme', value: 'Active', color: '#F59E0B' },
   ];
 
   return (

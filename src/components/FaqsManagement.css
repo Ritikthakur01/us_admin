@@ -6,19 +6,23 @@
 }
 
 .faq-card {
-  background: white;
+  background: rgba(31, 41, 55, 0.8);
+  backdrop-filter: blur(10px);
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 1rem;
   transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .faq-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3), 0 0 0 1px rgba(59, 130, 246, 0.3);
+  transform: translateY(-2px);
+  background: rgba(31, 41, 55, 0.95);
 }
 
 .faq-content {
@@ -34,13 +38,13 @@
 
 .faq-question-preview h3 {
   margin: 0;
-  color: var(--color-text);
+  color: #F9FAFB;
   font-size: 1.1rem;
   font-weight: 700;
 }
 
 .faq-category {
-  background: var(--color-primary);
+  background: linear-gradient(135deg, #3B82F6, #8B5CF6);
   color: white;
   padding: 0.25rem 0.75rem;
   border-radius: 12px;
@@ -49,7 +53,7 @@
 }
 
 .faq-answer-preview {
-  color: var(--color-text-light);
+  color: #D1D5DB;
   line-height: 1.6;
   margin-bottom: 0.5rem;
   font-size: 0.95rem;
@@ -57,7 +61,7 @@
 
 .faq-meta {
   font-size: 0.85rem;
-  color: var(--color-text-light);
+  color: #D1D5DB;
   margin: 0.5rem 0 0 0;
 }
 
